@@ -7,7 +7,6 @@
  */
 
 //System Libraries
-
 #include <iostream>  //I/O Library
 #include <cstdlib>  // library for rand and srand
 #include <ctime>    // library for the time function
@@ -21,13 +20,12 @@ using namespace std;
 
 //Function Prototypes
 
-
 //Execution of Code Begins Here
 int main(int argc, char** argv) { 
 
     //Set the random number seed here
     
-    //Declare all variables for this function
+    //Declare all variaVVbles for this function
      int dice1, dice2, sum, point, newSum;
      char start;
     
@@ -122,15 +120,12 @@ int main(int argc, char** argv) {
    
        }// end of while loop
     
-           
         // determine if its a win or craps after leaving the loop
         if (sum == 7)
             cout <<"CRAPS! YOU LOSE";
             else cout << "CONGRATULATIONS! YOU WIN!";
     
-    
-    
-    //Clean up the code, close files, deallocate memory, etc....
+     //Clean up the code, close files, deallocate memory, etc....
     //Exit stage right
 
     
