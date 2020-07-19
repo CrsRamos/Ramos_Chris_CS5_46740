@@ -1,0 +1,90 @@
+/* 
+ * File:   main.cpp
+ * Author: Chris Ramos
+ * Created on July 18, 2020, 7:52 PM
+ * Purpose: Craps version 3 testing
+ *           
+ */
+
+//System Libraries
+
+#include <iostream>     // I/O Library
+#include <cstdlib>      // library for rand and srand
+#include <ctime>        // library for the time function
+#include <iomanip>      // library for formatting
+#include <string>       // string library
+using namespace std;
+
+//User Libraries
+
+//Global Constants Only
+//Well known Science, Mathematical and Laboratory Constants
+
+//Function Prototypes
+
+int main(int argc, char** argv) { //Execution of Code Begins Here
+
+    //Set the random number seed here
+    
+    //Declare all variables for this function
+     int dice1, dice2, sum, point, newSum, rollNum, pcnt;
+     char start, plyAgn; // start game
+     string result; 
+     float bet, houPcnt, houWins, usrWins, totUwns;
+     
+         //Initialize all known variables
+     //houPcnt = 0.02;
+     pcnt = 2;
+     
+    
+     
+     
+     //Process Inputs to Outputs -> Mapping Process
+    //Maps known values to the unknown objectives
+
+    cout << " \t\tRULES OF CRAPS" << endl;
+    cout << "*********************************************";  
+    cout << endl;
+    
+    // display the rules
+    cout << setw(30) << "On the first roll" << endl;
+    cout << "7 or 11" << setw(34) << "You win" <<endl;
+    cout << "2, 3, 12" << setw(33) << "You lose"<<endl;
+    cout << "4, 5, 6, 8, 9, 10" << setw(24) << "Roll again"<<endl;
+    cout << endl;
+    cout << setw(30) << "On the second roll" << endl;
+    cout << setw(43) << "If you rolled a number from the roll \n";
+    cout << setw(43) << "again row get it again before a 7 to win.";
+    cout << endl;
+    cout << endl;
+
+     // do while loop to give the option of playing again
+     do  
+    {
+    
+    // place a bet
+        cout << "The house pays double if you win " << endl;
+        cout << "but takes a "<< pcnt << "% cut." << endl;
+        cout << "Place your bet: $";
+        cin >> bet;
+        cout << endl;       
+
+
+        // start the game
+        cout <<"Enter a S to start the game ";
+        cin >> start;
+        cout << endl;
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    return 0;
+}
+
