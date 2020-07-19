@@ -102,7 +102,29 @@ int main(int argc, char** argv) { //Execution of Code Begins Here
     cout << "*********************************************" << endl;    
     
     
-    //Display the Inputs/Outputs
+      //Display the Inputs/Outputs
+
+     // while loop to keep rolling 
+        while (result == "point") {
+            cout <<"your point is " << point << endl;
+                    
+        cout << "Enter the first dice number: ";
+        cin >> dice1;
+    
+        cout << "Enter the second dice number: ";
+        cin >> dice2;
+        cout << endl;
+        sum = dice1 + dice2; // initialize sum again
+        rollNum++;
+        
+        if (sum == point)
+            result = "win";
+        else if (sum == 7)
+            result = "lose";
+        else 
+            result = "point";
+        
+        }// end of while loop
     
     
     
