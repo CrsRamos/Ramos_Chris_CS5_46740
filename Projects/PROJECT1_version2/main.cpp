@@ -1,6 +1,6 @@
 /* 
  * File:   main.cpp
- * Author: Created on July 10, 2020, 3:37 PM
+ * Author: Chris Ramos
  * Created on July 18, 2020, 4:38 PM
  * Purpose: Craps version 2 testing
  *           
