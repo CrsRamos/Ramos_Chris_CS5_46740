@@ -127,7 +127,25 @@ int main(int argc, char** argv) { //Execution of Code Begins Here
         }// end of while loop
     
     
+    // determine if its a win or craps 
+        if (result == "lose"){
+        cout <<"CRAPS! YOU LOSE" << endl;
+        cout << "You lost in " << rollNum << " roll(s)";
+        }// end of if
+        
+        if (result == "win") {
+        cout << "CONGRATULATIONS! YOU WIN!" << endl;
+        cout << "You won in " << rollNum << " roll(s)";
+        } // end of if
     
+    
+    // ask user if the would like to play again
+    cout << endl;
+    cout << endl;
+    cout <<"Would you like to play again? (Y/N)";
+    
+    //Clean up the code, close files, deallocate memory, etc....
+    //Exit stage right
     
     
     
