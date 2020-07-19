@@ -193,8 +193,20 @@ int main(int argc, char** argv) { //Execution of Code Begins Here
                 }// end of if
     
     
+     // ask user if the would like to play again
+        cout << endl;
+        cout << endl;
+        cout <<"Would you like to play again? (Y/N)";
+        cin >> plyAgn;
+        cout << endl;
     
-    
+        } while ( plyAgn == 'Y' || plyAgn == 'y'); // end of do while loop
+
+       //Clean up the code, close files, deallocate memory, etc....
+       //Exit stage right
+
+       cout << endl;
+        
     
     
     return 0;
