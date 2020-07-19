@@ -163,6 +163,34 @@ int main(int argc, char** argv) { //Execution of Code Begins Here
         houWins = houPcnt / 100 * usrWins;
         totUwns = usrWins - houWins;
     
+    // determine winnings
+            if (result == "win") {
+                cout << setprecision(2) << fixed;
+                cout << endl;
+                cout << "\tWINNINGS" << endl;
+
+                for (int i = 0; i < 24; i++){ //create + pattern
+                 cout << "+";  
+                }// end of for loop
+
+                cout << endl;
+                cout << "You bet: $" << bet << endl;
+                cout << "You won: $" << usrWins << endl;
+                cout << "House gets: $" << houWins << endl;
+                cout << "You take home: $" << totUwns << endl;
+
+            } else {
+                cout << endl;
+                cout << "\tLOSSES" << endl;
+
+                for (int i = 0; i < 24; i++){ //create - pattern
+                 cout << "-";  
+                }// end of for loop
+
+                cout << endl;
+                cout << "You bet: $" << bet << endl;
+                cout << "You lost: $" << bet << endl;
+                }// end of if
     
     
     
