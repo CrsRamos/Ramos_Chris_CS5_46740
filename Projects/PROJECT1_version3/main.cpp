@@ -121,7 +121,47 @@ int main(int argc, char** argv) { //Execution of Code Begins Here
     
     //Display the Inputs/Outputs
     
+     // while loop to keep rolling 
+        while (result == "point") {
+            cout <<"your point is " << point << endl;
+                    
+                // Roll again
+                dice1 = (rand() + time(0)) % 6 + 1;
+                dice2 = (rand() + time(0)) % 6 + 1;
+                sum = (dice1 + dice2);
+                rollNum++;
+
+                cout <<"you rolled a " << dice1 << " and " << dice2 << 
+                " = " << sum << endl;
+                cout << endl;
+        
+                if (sum == point)
+                    result = "win";
+                else if (sum == 7)
+                    result = "lose";
+                else 
+                    result = "point";
+
+        }// end of while loop
     
+           
+        // determine if its a win or craps 
+        if (result == "lose"){
+            cout <<"CRAPS! YOU LOSE" << endl;
+            cout << "You lost in " << rollNum << " roll(s)";
+            cout << endl;
+            }// end of if
+        
+        if (result == "win") {
+            cout << "CONGRATULATIONS! YOU WIN!" << endl;
+            cout << "You won in " << rollNum << " roll(s)";
+            cout << endl;
+            } // end of if
+        
+        houPcnt = static_cast<float>(pcnt);   
+        usrWins = bet * 2;
+        houWins = houPcnt / 100 * usrWins;
+        totUwns = usrWins - houWins;
     
     
     
