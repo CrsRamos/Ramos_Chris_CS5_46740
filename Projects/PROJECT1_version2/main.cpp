@@ -73,6 +73,49 @@ int main(int argc, char** argv) { //Execution of Code Begins Here
     cout << endl;
     sum = dice1 + dice2;
 
+    switch (sum)
+	{
+	// if you roll a 2, 3, 12 you lose
+        case 2:
+	case 3:
+	case 12:
+            result = "lose";
+            rollNum++; // increments number of rolls
+		break;
+	//if you roll 7 or 11 you win
+        case 7:
+	case 11:
+		result = "win";
+                rollNum++; // increments number of rolls
+		break;
+	
+        // if you roll a 4, 5, 6, 8, 9, 10 set the point
+        // and roll again
+        default:
+		result = "point";
+                rollNum++; // increments number of rolls
+		point = sum;
+		break;
+	}
+    point = sum;
+    cout << endl;
+    cout << "*********************************************" << endl;    
+    
+    
+    //Display the Inputs/Outputs
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     return 0;
 }
 
