@@ -1,8 +1,8 @@
 /* 
  * File:   main.cpp
- * Author: Chris Ramos
+ * Author: Chris Ramos 
  * Created on July 19, 2020, 3:42 PM
- * Purpose: Craps version 3 testing
+ * Purpose: Craps final version
  *           
  */
 
@@ -13,6 +13,7 @@
 #include <ctime>        // library for the time function
 #include <iomanip>      // library for formatting
 #include <string>       // string library
+#include <fstream>      // input from file / output to file library
 using namespace std;
 
 //User Libraries
@@ -27,43 +28,73 @@ int main(int argc, char** argv) { //Execution of Code Begins Here
     //Set the random number seed here
     
     //Declare all variables for this function
-     int dice1, dice2, sum, point, newSum, rollNum, pcnt;
-     char start, plyAgn; // start game
-     string result; 
-     float bet, houPcnt, houWins, usrWins, totUwns;
+     int dice1,         // holds the value for the first die
+         dice2,         // holds the value for the second die 
+         sum,           // holds and calculates the sum of the dice 
+         point,         // holds the players point 
+         rollNum,       // counts the number of rolls 
+         pcnt;          // percent that house gets if the player wins
      
-         //Initialize all known variables
-     //houPcnt = 0.02;
-     pcnt = 2;
+      char start,       // starts game 
+           plyAgn;      // allows player to choose if they want to play again
      
-    
+      string result;    // determines player status.      
      
+     float bet,         // holds the players bet 
+           houPcnt,     // calculates and displays the house percentage  
+           houWins,     // calculates and displays how much the house gets
+           usrWins,     // calculates and displays how much the player wins 
+           totUwns;     // calculates and displays how much the player takes home 
      
-     //Process Inputs to Outputs -> Mapping Process
-    //Maps known values to the unknown objectives
+     bool wrt2Fl; // if true write to file
+     
+     //Initialize all known variables
+     
+     pcnt = 2;  //houPcnt = 0.02;
+     
+         //Process Inputs to Outputs -> Mapping Process
+       //Maps known values to the unknown objectives
 
-    cout << " \t\tRULES OF CRAPS" << endl;
-    cout << "*********************************************";  
-    cout << endl;
-    
-    // display the rules
-    cout << setw(30) << "On the first roll" << endl;
-    cout << "7 or 11" << setw(34) << "You win" <<endl;
-    cout << "2, 3, 12" << setw(33) << "You lose"<<endl;
-    cout << "4, 5, 6, 8, 9, 10" << setw(24) << "Roll again"<<endl;
-    cout << endl;
-    cout << setw(30) << "On the second roll" << endl;
-    cout << setw(43) << "If you rolled a number from the roll \n";
-    cout << setw(43) << "again row get it again before a 7 to win.";
-    cout << endl;
-    cout << endl;
+       // Read from file
+      ifstream inputFile;
+      string rules;
+      inputFile.open("rules.txt");
+
+      inputFile >> rules;
+      cout << "\t\t"  << rules << " ";
+
+      inputFile >> rules;
+      cout << rules << " ";
+
+      inputFile >> rules;
+      cout << rules << " ";
+      cout << endl;
+
+      inputFile.close(); // close the file
+     
+       
+       cout << "*********************************************";  
+       cout << endl;
+
+       // display the rules
+       cout << setw(30) << "On the first roll" << endl;
+       cout << "7 or 11" << setw(34) << "You win" <<endl;
+       cout << "2, 3, 12" << setw(33) << "You lose"<<endl;
+       cout << "4, 5, 6, 8, 9, 10" << setw(24) << "Roll again"<<endl;
+       cout << endl;
+       cout << setw(30) << "On the second roll" << endl;
+       cout << setw(43) << "If you rolled a number from the roll \n";
+       cout << setw(43) << "again row get it again before a 7 to win.";
+       cout << endl;
+       cout << endl;
     
     
     // do while loop to give the option of playing again
-     do  
+     do  // do while loop to allow the user to run the program again
     {
-     
-        // place a bet
+        rollNum = 0; // reset the number of rolls 
+        
+          // place a bet
         cout << "The house pays double if you win " << endl;
         cout << "but takes a "<< pcnt << "% cut." << endl;
         cout << "Place your bet: $";
@@ -156,6 +187,7 @@ int main(int argc, char** argv) { //Execution of Code Begins Here
         if (result == "win") {
             cout << "CONGRATULATIONS! YOU WIN!" << endl;
             cout << "You won in " << rollNum << " roll(s)";
+            wrt2Fl = true;
             cout << endl;
             } // end of if
         
@@ -169,6 +201,7 @@ int main(int argc, char** argv) { //Execution of Code Begins Here
                 cout << setprecision(2) << fixed;
                 cout << endl;
                 cout << "\tWINNINGS" << endl;
+                
 
                 for (int i = 0; i < 24; i++){ //create + pattern
                  cout << "+";  
@@ -183,6 +216,7 @@ int main(int argc, char** argv) { //Execution of Code Begins Here
             } else {
                 cout << endl;
                 cout << "\tLOSSES" << endl;
+                wrt2Fl = false;
 
                 for (int i = 0; i < 24; i++){ //create - pattern
                  cout << "-";  
@@ -194,13 +228,32 @@ int main(int argc, char** argv) { //Execution of Code Begins Here
                 }// end of if
     
     
-    
-        // ask user if the would like to play again
-        cout << endl;
-        cout << endl;
-        cout <<"Would you like to play again? (Y/N)";
-        cin >> plyAgn;
-        cout << endl;
+          
+            // if wrt2Fl true write the results to a file
+                if (wrt2Fl == true) {
+                cout << "Your results will be written to an " << endl;
+                cout << "external text file for you." << endl;
+
+               ofstream outputFile;
+               outputFile.open("result.txt");
+
+               // write win results the file
+               outputFile << "You bet: $" << bet << endl;
+               outputFile << "You won: $" << usrWins << endl;
+               outputFile << "House gets: $" << houWins << endl;
+               outputFile << "You take home: $" << totUwns << endl;
+
+               // close the file 
+               outputFile.close();
+              } // end of if
+        
+        
+            // ask user if the would like to play again
+            cout << endl;
+            cout << endl;
+            cout <<"Would you like to play again? (Y/N)";
+            cin >> plyAgn;
+            cout << endl;
     
         } while ( plyAgn == 'Y' || plyAgn == 'y'); // end of do while loop
 
@@ -210,7 +263,6 @@ int main(int argc, char** argv) { //Execution of Code Begins Here
        cout << endl;
     return 0;
 }
-
 
 
 
