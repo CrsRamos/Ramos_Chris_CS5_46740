@@ -25,7 +25,7 @@ using namespace std;
 
 int main(int argc, char** argv) { //Execution of Code Begins Here
 
-    //Set the random number seed here
+    
     
     //Declare all variables for this function
      int dice1,         // holds the value for the first die
@@ -55,7 +55,7 @@ int main(int argc, char** argv) { //Execution of Code Begins Here
          //Process Inputs to Outputs -> Mapping Process
        //Maps known values to the unknown objectives
 
-       // Read from file
+      // Read from file
       ifstream inputFile;
       string rules;
       inputFile.open("rules.txt");
@@ -119,9 +119,11 @@ int main(int argc, char** argv) { //Execution of Code Begins Here
             dice2 = (rand() + time(0)) % 6 + 1;
             sum = (dice1 + dice2);
 
-        cout <<"you rolled a " << dice1 << " and " << dice2 << 
-                " your point is " << sum << endl;
-    
+         cout << "*********************************************" << endl; 
+         cout <<"you rolled a " << dice1 << " and " << dice2 << 
+                " = " << sum << endl;
+            
+            
     
         switch (sum)
             {
@@ -149,7 +151,7 @@ int main(int argc, char** argv) { //Execution of Code Begins Here
             }
         point = sum;
         cout << endl;
-    cout << "*********************************************" << endl;    
+     
     
     //Display the Inputs/Outputs
 
