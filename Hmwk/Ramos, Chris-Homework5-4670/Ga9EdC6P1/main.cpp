@@ -2,8 +2,8 @@
  * File:   main.cpp
  * Author: Chris Ramos
  * Created on July 21, 2020, 1:07 PM
- * Purpose:  Template which is to be copied for all future
- *           Homework, Labs, Projects, Test, etc...
+ * Purpose:  Calculate the retail price of an item from the wholesale
+ *           price and markup percentage entered by the user
  */
 
 //System Libraries
@@ -46,7 +46,7 @@ int main(int argc, char** argv) { //Execution of Code Begins Here
     rtlPrc = calculateRetail(wsCost, mUpPcnt);
     
     //Display the Inputs/Outputs
-    cout << fixed << setprecision(2); 
+    cout << fixed << setprecision(2); // format two zeros after decimal
     cout << "The retail price is $" << rtlPrc;
     
     
