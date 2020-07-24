@@ -2,7 +2,7 @@
  * File:   main.cpp
  * Author: Chris Ramos
  * Created on July 23, 2020, 1:40 PM
- * Purpose:  Use arrays to hold employee id's, hours worked and payrate
+ * Purpose:  Use arrays to hold employee id's, hours worked and pay rate
  *           then calculate and display each employees gross pay.
  */
 

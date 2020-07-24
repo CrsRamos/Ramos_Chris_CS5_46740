@@ -22,11 +22,7 @@ int main(int argc, char** argv) { //Execution of Code Begins Here
     char   answers[EXAMQS] = {'A', 'D', 'B', 'B', 'C', 'B', 'A', 'B', 'C', 'D',
                             'A', 'C', 'D', 'B', 'D', 'C', 'C', 'A', 'D', 'B'}; 
     
-   /* int count,       // loop counter
-        score,       // score total
-        wrngAns,     // wrong answers
-        missed;      // questions missed
-    */
+   
    //Initialize all known variables
     
     //Process Inputs to Outputs -> Mapping Process

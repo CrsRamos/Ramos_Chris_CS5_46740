@@ -2,8 +2,9 @@
  * File:   main.cpp
  * Author: Chris Ramos
  * Created on July 22, 2020, 4:45 PM
- * Purpose:  Template which is to be copied for all future
- *           Homework, Labs, Projects, Test, etc...
+ * Purpose:  Get the monthly sales for five salsa flavors form the user
+ *           calculate the total sales and display which was the highest 
+ *           seller and which was the lowest
  */
 
 //System Libraries
@@ -30,11 +31,7 @@ int main(int argc, char** argv) { //Execution of Code Begins Here
             totSld,         // total sold
             hiSold,         // highest sold
             lowSold;        // lowest sold
-    
-    string salLwst,
-            salHst;
-    
-    
+   
     //Initialize all known variables
     totSld = 0;
     
@@ -42,7 +39,6 @@ int main(int argc, char** argv) { //Execution of Code Begins Here
     //Maps known values to the unknown objectives
     
     // for loop to get the sales of each salsa type
-    
     for (int count = 0; count < FLAVORS; count++)
     {
      cout << "Enter the sales of " << salsa[count] << " salsa:$" <<endl;
@@ -52,13 +48,13 @@ int main(int argc, char** argv) { //Execution of Code Begins Here
     }// end of for loop
     
     int high, low;
-    high = 0;
-    low = 0;
+    high = 0;   // initialize high
+    low = 0;    // initialize low
     
    hiSold = sold[high];
    lowSold = sold[low];
     
-    // find the highest and the lowest
+    // for loop to find the highest and the lowest
    for (int count = 0; count < FLAVORS; count++)
    {
        if(sold[count] > hiSold){
@@ -78,12 +74,15 @@ int main(int argc, char** argv) { //Execution of Code Begins Here
     //Display the Inputs/Outputs
         
         cout << "Type"<< setw(10) << "Sales" << endl;
+        
+      // for loop to display the salsa flavor sales 
         for(int count = 0; count < 5; count++){
             cout << setprecision(2) << fixed;
             cout << left << setw(9) <<  salsa[count] << left<< 
              "$" << sold[count] << endl;
-        }
+        }// end of for loop
 
+     // display total sales and which flavor was the lowest and which was the highest 
         cout << "Total Sales was $" << totSld << endl;
         cout << salsa[low] <<" was the lowest selling product." << endl;
         cout <<  salsa[high] <<" was the highest selling product.";
