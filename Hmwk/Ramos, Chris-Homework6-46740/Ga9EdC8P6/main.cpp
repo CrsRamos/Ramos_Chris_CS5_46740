@@ -17,7 +17,7 @@ using namespace std;
 
 //Function Prototypes
 bool binarySearch(const string [], string, int);
-void sortList (string [], int);
+void Selectionsort (string [], int);
 
 //Execution Begins Here
 int main(int argc, char** argv) {
@@ -39,7 +39,7 @@ int main(int argc, char** argv) {
     //Initialize all known variables
     
     
-    sortList(names, NUM_NAMES);
+    Selectionsort(names, NUM_NAMES);
     
     
     //Process Inputs to Outputs -> Mapping Process
@@ -97,24 +97,23 @@ bool binarySearch(const string names[], string name, int size)
 }
 
 
-void sortList (string names [], int size){
-    
-    int search, minIndex;
-    string min;
-    for (int search = 0; search < size -1; search++){
-        min = names[search];
-        minIndex = search;
-        
-        for (int j = search +1; j < size; j++){
-            if (names[j] < min){
-                min = names[j];
-                minIndex = j;
-                }// end of if
-        }// end of for loop
-     names[minIndex] = names[search];
-    names[search] = min;
+void Selectionsort (string names [], int size){
+    int startScan, minIndex;
+    string minName;
 
-    }// end of for loop
-    
-    
+    for(startScan = 0; startScan < size-1; startScan++){
+        minName = names[startScan];
+        minIndex = startScan;
+        for(int index = startScan+1; index < size; index++){
+           if(names[index] < minName){
+                
+                minName = names[index];
+                minIndex = index;
+            }
+        } 
+       
+        names[minIndex] = names[startScan];
+        
+        names[startScan] = minName;
+    }
 }
