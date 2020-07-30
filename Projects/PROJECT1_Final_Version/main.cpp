@@ -88,7 +88,6 @@ int main(int argc, char** argv) { //Execution of Code Begins Here
        cout << endl;
        cout << endl;
     
-    
     // do while loop to give the option of playing again
      do  // do while loop to allow the user to run the program again
     {
