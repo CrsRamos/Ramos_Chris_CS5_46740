@@ -20,8 +20,9 @@ using namespace std;
 //Well known Science, Mathematical and Laboratory Constants
 
 //Function Prototypes
-void showRules();
+void showRules();  // displays the rules of the game
 void getbet(float &); // takes the players bet
+void startGame(char); // prompts the user to start the game
 int rollDice(); // rolls dice, calculates and displays sum
 
 //Execution of Code Begins Here
@@ -39,7 +40,7 @@ int main(int argc, char** argv) {
      
              
              
-             char start,       // starts game 
+      char start,       // starts game 
           plyAgn;      // allows player to choose if they want to play again
      
       string result;    // determines player status.   
@@ -52,14 +53,12 @@ int main(int argc, char** argv) {
     
     cout << "*********************************************" << endl; 
     
-     // Prompt and take the bet function call
+    // Prompt and take the bet function call
         getbet(bet); 
         cout << endl; 
     
-    
-    // start the game
-    
-    
+    // prompt the user to start the game function call
+       startGame(start);
     
     
     
@@ -195,6 +194,19 @@ void getbet(float &bet) {
     cin >> bet;
      
 }// end of getbet function
+
+void startGame(char start){
+        cout <<"Enter a S to start the game ";
+        cin >> start;
+        cout << endl;
+
+        // validate
+        while ( start != 'S' && start != 's') {
+            cout <<"You must enter an S to start ";
+            cin >> start;
+            cout << endl;
+        }// end of while loop for validation
+} // end of start game function
 
 
 // roll dice, calculate sum and display results
