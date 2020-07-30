@@ -2,7 +2,7 @@
  * File:   main.cpp
  * Author: Chris Ramos
  * Created on July 30, 2020, 1:57 PM
- * Purpose:  Project2 version 1
+ * Purpose:  Project2 version 2
  *           
  */
 
@@ -21,6 +21,7 @@ using namespace std;
 
 //Function Prototypes
 void showRules();
+void getbet(float &); // takes the players bet
 int rollDice(); // rolls dice, calculates and displays sum
 
 //Execution of Code Begins Here
@@ -34,8 +35,11 @@ int main(int argc, char** argv) {
          rollNum,       // counts the number of rolls 
          pcnt;          // percent that house gets if the player wins
    
-    
-     char start,       // starts game 
+     float bet;         // holds the players bet 
+     
+             
+             
+             char start,       // starts game 
           plyAgn;      // allows player to choose if they want to play again
      
       string result;    // determines player status.   
@@ -48,7 +52,9 @@ int main(int argc, char** argv) {
     
     cout << "*********************************************" << endl; 
     
-     // place a bet
+     // Prompt and take the bet function call
+        getbet(bet); 
+        cout << endl; 
     
     
     // start the game
@@ -176,6 +182,19 @@ void showRules(){
        cout << endl;
  } // end of show rules function
 
+
+// Get the players bet  
+void getbet(float &bet) {
+    int pcnt;
+    pcnt = 2;
+    // prompt
+    cout << "The house pays double if you win " << endl;
+    cout << "but takes a "<< pcnt << "% cut." << endl;
+    cout << "Place your bet: $"; 
+    // take the bet
+    cin >> bet;
+     
+}// end of getbet function
 
 
 // roll dice, calculate sum and display results
