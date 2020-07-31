@@ -100,21 +100,7 @@ int main(int argc, char** argv) {
         }// end of while loop
     
         cout << endl;
-     // determine if its a win or craps 
-        if (result == "lose"){
-            cout <<"CRAPS! YOU LOSE" << endl;
-            cout << "You lost in " << rollNum << " roll(s)";
-            cout << endl;
-            }// end of if
-        
-        if (result == "win") {
-            cout << "CONGRATULATIONS! YOU WIN!" << endl;
-            cout << "You won in " << rollNum << " roll(s)";
-            wrt2Fl = true;
-            cout << endl;
-            } // end of if
-    
-    
+     
     // determine if its a win or craps 
         if (result == "lose"){
             cout <<"CRAPS! YOU LOSE" << endl;
@@ -129,12 +115,7 @@ int main(int argc, char** argv) {
             cout << endl;
             } // end of if
         
-        houPcnt = static_cast<float>(pcnt);   
-        usrWins = bet * 2;
-        houWins = houPcnt / 100 * usrWins;
-        totUwns = usrWins - houWins;
-
-            // determine winnings
+        // determine winnings
             if (result == "win") {
                 cout << setprecision(2) << fixed;
                 cout << endl;
@@ -145,11 +126,9 @@ int main(int argc, char** argv) {
                  cout << "+";  
                 }// end of for loop
 
-                cout << endl;
-                cout << "You bet: $" << bet << endl;
-                cout << "You won: $" << usrWins << endl;
-                cout << "House gets: $" << houWins << endl;
-                cout << "You take home: $" << totUwns << endl;
+             cout << endl;
+         // function call to calculate and display the winnings 
+           CalcDispWin(bet, houPcnt, usrWins, houWins, totUwns);
 
             } else {
                 cout << endl;
@@ -210,7 +189,6 @@ void showRules(){
        cout << endl;
        cout << endl;
  } // end of show rules function
-
 
 // Get the players bet  
 void getbet(float &bet) {
@@ -284,4 +262,19 @@ void getResults(string& result, int& point, int& sum){
             }
 }// end of get results function
 
-
+// Calculate and display the player winnings
+void CalcDispWin(float bet, float houPcnt, float usrWins, float houWins, float totUwns ){
+    
+    // calculate winnings
+    int pcnt = 2;
+    houPcnt = static_cast<float>(pcnt);   
+        usrWins = bet * 2;
+        houWins = houPcnt / 100 * usrWins;
+        totUwns = usrWins - houWins;
+    
+     // display winnings  
+        cout << "You bet: $" << bet << endl;
+        cout << "You won: $" << usrWins << endl;
+        cout << "House gets: $" << houWins << endl;
+        cout << "You take home: $" << totUwns << endl;
+} // end of calculate and display winnings function
