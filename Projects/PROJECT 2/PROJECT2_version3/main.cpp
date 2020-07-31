@@ -7,10 +7,13 @@
  */
 
 //System Libraries
-#include <iostream>
-#include <iomanip>
-#include <fstream>      // input from file / output to file library
+#include <iostream>     // I/O Library
+#include <cstdlib>      // library for rand and srand
 #include <ctime>        // library for the time function
+#include <iomanip>      // library for formatting
+#include <string>       // string library
+#include <fstream>      // input from file / output to file library
+
 using namespace std;
 
 //User Libraries
@@ -24,6 +27,7 @@ void getbet(float &); // takes the players bet
 void startGame(char); // prompts the user to start the game
 int rollDice(); // rolls dice, calculates and displays sum
 void getResults(string& status, int& point, int& sum); // roll 1 results
+void CalcDispWin(float, float, float, float, float); // calculates winnings
 
 //Execution of Code Begins Here
 int main(int argc, char** argv) {
@@ -36,8 +40,11 @@ int main(int argc, char** argv) {
          rollNum,       // counts the number of rolls 
          pcnt;          // percent that house gets if the player wins
    
-     float bet;         // holds the players bet 
-     
+     float bet,         // holds the players bet 
+           houPcnt,     // calculates and displays the house percentage  
+           houWins,     // calculates and displays how much the house gets
+           usrWins,     // calculates and displays how much the player wins 
+           totUwns;     // calculates and displays how much the player takes home
              
              
       char start,       // starts game 
@@ -108,6 +115,55 @@ int main(int argc, char** argv) {
             } // end of if
     
     
+    // determine if its a win or craps 
+        if (result == "lose"){
+            cout <<"CRAPS! YOU LOSE" << endl;
+            cout << "You lost in " << rollNum << " roll(s)";
+            cout << endl;
+            }// end of if
+        
+        if (result == "win") {
+            cout << "CONGRATULATIONS! YOU WIN!" << endl;
+            cout << "You won in " << rollNum << " roll(s)";
+            wrt2Fl = true;
+            cout << endl;
+            } // end of if
+        
+        houPcnt = static_cast<float>(pcnt);   
+        usrWins = bet * 2;
+        houWins = houPcnt / 100 * usrWins;
+        totUwns = usrWins - houWins;
+
+            // determine winnings
+            if (result == "win") {
+                cout << setprecision(2) << fixed;
+                cout << endl;
+                cout << "\tWINNINGS" << endl;
+                
+
+                for (int i = 0; i < 24; i++){ //create + pattern
+                 cout << "+";  
+                }// end of for loop
+
+                cout << endl;
+                cout << "You bet: $" << bet << endl;
+                cout << "You won: $" << usrWins << endl;
+                cout << "House gets: $" << houWins << endl;
+                cout << "You take home: $" << totUwns << endl;
+
+            } else {
+                cout << endl;
+                cout << "\tLOSSES" << endl;
+                wrt2Fl = false;
+
+                for (int i = 0; i < 24; i++){ //create - pattern
+                 cout << "-";  
+                }// end of for loop
+
+                cout << endl;
+                cout << "You bet: $" << bet << endl;
+                cout << "You lost: $" << bet << endl;
+                }// end of if
     
     
     
