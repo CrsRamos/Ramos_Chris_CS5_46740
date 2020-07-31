@@ -13,7 +13,6 @@
 #include <ctime>        // library for the time function
 using namespace std;
 
-
 //User Libraries
 
 //Global Constants Only
@@ -24,6 +23,7 @@ void showRules();  // displays the rules of the game
 void getbet(float &); // takes the players bet
 void startGame(char); // prompts the user to start the game
 int rollDice(); // rolls dice, calculates and displays sum
+void getResults(string& status, int& point, int& sum); // roll 1 results
 
 //Execution of Code Begins Here
 int main(int argc, char** argv) {
@@ -60,45 +60,19 @@ int main(int argc, char** argv) {
     // prompt the user to start the game function call
        startGame(start);
     
-    
-    
-    
     // 1st dice roll
     // call roll dice function   
-    sum = rollDice();
+        sum = rollDice();
+        rollNum++; // increments rolls
     
-    
-  // determine roll results
-    switch (sum)
-            {
-            // if you roll a 2, 3, 12 you lose
-            case 2:
-            case 3:
-            case 12:
-                result = "lose";
-                rollNum++; // increments number of rolls
-                    break;
-            //if you roll 7 or 11 you win
-            case 7:
-            case 11:
-                    result = "win";
-                    rollNum++; // increments number of rolls
-                    break;
-
-            // if you roll a 4, 5, 6, 8, 9, 10 set the point
-            // and roll again
-            default:
-                    result = "point";
-                    rollNum++; // increments number of rolls
-                    point = sum;
-                    break;
-            }
+    // determine the results of the first roll
+    getResults(result, point, sum);
         point = sum;
         cout << endl;
+  
  
      
-    
-     // while loop to keep rolling 
+    // while loop to keep rolling 
         while (result == "point") {
             cout <<"your point is " << point << endl;
                     
@@ -139,7 +113,7 @@ int main(int argc, char** argv) {
     
     
     return 0;
-}// end of main
+}// --------------- end of main function -------------------------
 
 // function definitions
 
@@ -225,4 +199,31 @@ void startGame(char start){
 } // end of rollDice function
 
 
+ // get the results of the first role
+void getResults(string& result, int& point, int& sum){
+    int rollNum;
+    switch (sum)
+            {
+            // if you roll a 2, 3, 12 you lose
+            case 2:
+            case 3:
+            case 12:
+                result = "lose";
+                rollNum++; // increments number of rolls
+                    break;
+            //if you roll 7 or 11 you win
+            case 7:
+            case 11:
+                    result = "win";
+                    rollNum++; // increments number of rolls
+                    break;
 
+            // if you roll a 4, 5, 6, 8, 9, 10 set the point
+            // and roll again
+            default:
+                    result = "point";
+                    rollNum++; // increments number of rolls
+                    point = sum;
+                    break;
+            }
+}// end of get results function
