@@ -28,6 +28,7 @@ void startGame(char); // prompts the user to start the game
 int rollDice(); // rolls dice, calculates and displays sum
 void getResults(string& status, int& point, int& sum); // roll 1 results
 void CalcDispWin(float, float, float, float, float); // calculates winnings
+void DisplayLosses(float); // displays the losses
 
 //Execution of Code Begins Here
 int main(int argc, char** argv) {
@@ -138,13 +139,14 @@ int main(int argc, char** argv) {
                 for (int i = 0; i < 24; i++){ //create - pattern
                  cout << "-";  
                 }// end of for loop
-
+                
                 cout << endl;
-                cout << "You bet: $" << bet << endl;
-                cout << "You lost: $" << bet << endl;
-                }// end of if
+                // display losses
+               
+            // function call to display the players losses 
+            DisplayLosses(bet);
     
-    
+            }// end of if
     
     
     return 0;
@@ -278,3 +280,10 @@ void CalcDispWin(float bet, float houPcnt, float usrWins, float houWins, float t
         cout << "House gets: $" << houWins << endl;
         cout << "You take home: $" << totUwns << endl;
 } // end of calculate and display winnings function
+
+// Display the player losses
+void DisplayLosses(float bet){
+        // display losses
+      cout << "You bet: $" << bet << endl;
+      cout << "You lost: $" << bet << endl;
+}// end of display player losses function
