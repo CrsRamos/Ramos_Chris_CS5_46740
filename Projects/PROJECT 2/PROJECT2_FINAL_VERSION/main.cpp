@@ -7,13 +7,12 @@
  */
 
 //System Libraries
-#include <iostream>     // I/O Library
-#include <cstdlib>      // library for rand and srand
-#include <ctime>        // library for the time function
-#include <iomanip>      // library for formatting
-#include <string>       // string library
+#include <iostream>
+#include <iomanip>
 #include <fstream>      // input from file / output to file library
+#include <ctime>        // library for the time function
 using namespace std;
+
 
 //User Libraries
 
@@ -21,7 +20,7 @@ using namespace std;
 //Well known Science, Mathematical and Laboratory Constants
 
 //Function Prototypes
-void showRules();  // displays the rules of the game
+void showRules(); // displays the rules of the game
 void getbet(float &); // takes the players bet
 void startGame(char); // prompts the user to start the game
 int rollDice(); // rolls dice, calculates and displays sum
@@ -29,10 +28,9 @@ void getResults(string& status, int& point, int& sum); // roll 1 results
 void CalcDispWin(float, float, float, float, float); // calculates winnings
 void DisplayLosses(float); // displays the losses
 
-
 //Execution of Code Begins Here
 int main(int argc, char** argv) {
-// variables
+
     //Declare all variables for this function
      int dice1,         // holds the value for the first die
          dice2,         // holds the value for the second die 
@@ -41,57 +39,70 @@ int main(int argc, char** argv) {
          rollNum,       // counts the number of rolls 
          pcnt;          // percent that house gets if the player wins
    
-     float bet,        // holds the players bet 
+      float bet,         // holds the players bet 
            houPcnt,     // calculates and displays the house percentage  
            houWins,     // calculates and displays how much the house gets
            usrWins,     // calculates and displays how much the player wins 
            totUwns;     // calculates and displays how much the player takes home 
-         
-             
-             
-      char start,       // starts game 
+          
+     
+     
+     
+     char start,       // starts game 
           plyAgn;      // allows player to choose if they want to play again
      
       string result;    // determines player status.   
       bool wrt2Fl; // if true write to file
     
+     pcnt = 2;  //houPcnt = 0.02;
     
-    
-    // show the rules function call
+      
+    //Process Inputs to Outputs -> Mapping Process
+    //Maps known values to the unknown objectives
+
+     // show the rules function call
     showRules();
+    
+    // do while loop to give the option of playing again
+     do  // do while loop to allow the user to run the program again
+    {
     
     cout << "*********************************************" << endl; 
     
+   
+    rollNum = 0; // reset the number of rolls 
+         
     // Prompt and take the bet function call
         getbet(bet); 
         cout << endl; 
     
+    
     // prompt the user to start the game function call
-       startGame(start);
+        startGame(start);
+    
     
     // 1st dice roll
     // call roll dice function   
         sum = rollDice();
         rollNum++; // increments rolls
     
-    // determine the results of the first roll
+    
+  // determine roll results
     getResults(result, point, sum);
         point = sum;
         cout << endl;
-  
  
      
-    // while loop to keep rolling 
+        // while loop to keep rolling 
         while (result == "point") {
             cout <<"your point is " << point << endl;
                     
             // Roll again
-            // call roll dice function    
+            // call roll dice function again    
             sum = rollDice();
-            rollNum++;
+            rollNum++; // increments rolls
 
-               
-        
+      
                 if (sum == point)
                     result = "win";
                 else if (sum == 7)
@@ -102,7 +113,8 @@ int main(int argc, char** argv) {
         }// end of while loop
     
         cout << endl;
-     // determine if its a win or craps 
+       
+        // determine if its a win or craps 
         if (result == "lose"){
             cout <<"CRAPS! YOU LOSE" << endl;
             cout << "You lost in " << rollNum << " roll(s)";
@@ -116,7 +128,8 @@ int main(int argc, char** argv) {
             cout << endl;
             } // end of if
     
-    // determine winnings
+        
+        // determine winnings
             if (result == "win") {
                 cout << setprecision(2) << fixed;
                 cout << endl;
@@ -147,10 +160,40 @@ int main(int argc, char** argv) {
                 
                 }// end of if
     
+     // WRITE TO FILE 
+         // if wrt2Fl true write the results to a file
+                if (wrt2Fl == true) {
+                cout << "Your results will be written to an " << endl;
+                cout << "external text file for you." << endl;
+
+               ofstream outputFile;
+               outputFile.open("result.txt");
+
+               // write win results the file
+               outputFile << "You bet: $" << bet << endl;
+               outputFile << "You won: $" << usrWins << endl;
+               outputFile << "House gets: $" << houWins << endl;
+               outputFile << "You take home: $" << totUwns << endl;
+
+               // close the file 
+               outputFile.close();
+              } // end of if
+        
+        
+        // ask user if the would like to play again
+            cout << endl;
+            cout << endl;
+            cout <<"Would you like to play again? (Y/N)";
+            cin >> plyAgn;
+            cout << endl;
     
-    
-    
-    return 0;
+        } while ( plyAgn == 'Y' || plyAgn == 'y'); // end of do while loop
+
+       //Clean up the code, close files, deallocate memory, etc....
+       //Exit stage right 
+        
+        
+  return 0;
 }// --------------- end of main function -------------------------
 
 // function definitions
@@ -196,14 +239,14 @@ void showRules(){
 
 // Get the players bet  
 void getbet(float &bet) {
-    int pcnt;
-    pcnt = 2;
-    // prompt
-    cout << "The house pays double if you win " << endl;
-    cout << "but takes a "<< pcnt << "% cut." << endl;
-    cout << "Place your bet: $"; 
-    // take the bet
-    cin >> bet;
+        int pcnt;
+        pcnt = 2;
+        // prompt
+        cout << "The house pays double if you win " << endl;
+        cout << "but takes a "<< pcnt << "% cut." << endl;
+        cout << "Place your bet: $"; 
+        // take the bet
+        cin >> bet;
      
 }// end of getbet function
 
@@ -224,21 +267,20 @@ void startGame(char start){
 // roll dice, calculate sum and display results
  int rollDice()
 {
-   // pick random die values
-   int dice1 = (rand() + time(0)) % 6 + 1;
-   int dice2 = (rand() + time(0)) % 6 + 1;
-   int sum = dice1 + dice2; // compute sum of die values
+        // pick random die values
+        int dice1 = (rand() + time(0)) % 6 + 1;
+        int dice2 = (rand() + time(0)) % 6 + 1;
+        int sum = dice1 + dice2; // compute sum of die values
 
-   // display results of this roll
-    cout <<"you rolled a " << dice1 << " and " << dice2 << 
-    " = " << sum << endl;
-   
-  return sum; // return sum of dice
+        // display results of this roll
+         cout <<"you rolled a " << dice1 << " and " << dice2 << 
+         " = " << sum << endl;
+
+       return sum; // return sum of dice
 } // end of rollDice function
 
 
- // get the results of the first role
-void getResults(string& result, int& point, int& sum){
+ void getResults(string& result, int& point, int& sum){
     int rollNum;
     switch (sum)
             {
@@ -265,7 +307,7 @@ void getResults(string& result, int& point, int& sum){
                     break;
             }
 }// end of get results function
-
+ 
 // Calculate and display the player winnings
 void CalcDispWin(float bet, float houPcnt, float usrWins, float houWins, float totUwns ){
     
@@ -290,5 +332,4 @@ void DisplayLosses(float bet){
       cout << "You bet: $" << bet << endl;
       cout << "You lost: $" << bet << endl;
 }// end of display player losses function
-
 
